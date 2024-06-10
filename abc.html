@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battery Status</title>
+  <style>
+    .c{
+        min-width: 380px;
+        background-color: lin;
+    }
+  </style>
+</head>
+<body>
+
+<div st id="battery-status">
+  <p>Battery Charging: <span id="charging"></span></p>
+  <p>Battery Level: <span id="level"></span></p>
+  <p>Charging Time: <span id="chargingTime"></span></p>
+  <p>Discharging Time: <span id="dischargingTime"></span></p>
+</div>
+
+<script>
+  // Check if the Battery Status API is supported
+  if ('getBattery' in navigator) {
+    navigator.getBattery().then(function(battery) {
+      function updateBatteryStatus() {
+        document.getElementById('charging').textContent = battery.charging ? 'Yes' : 'No';
+        document.getElementById('level').textContent = (battery.level * 100) + '%';
+        document.getElementById('chargingTime').textContent = battery.chargingTime + ' seconds';
+        document.getElementById('dischargingTime').textContent = battery.dischargingTime + ' seconds';
+      }
+
+      // Initial update
+      updateBatteryStatus();
+
+      // Update the battery status when it changes
+      battery.addEventListener('chargingchange', updateBatteryStatus);
+      battery.addEventListener('levelchange', updateBatteryStatus);
+      battery.addEventListener('chargingtimechange', updateBatteryStatus);
+      battery.addEventListener('dischargingtimechange', updateBatteryStatus);
+    });
+  } else {
+    document.getElementById('battery-status').textContent = 'Battery Status API is not supported in this browser.';
+  }
+</script>
+
+</body>
+</html>

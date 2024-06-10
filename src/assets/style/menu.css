@@ -1,0 +1,60 @@
+
+.ipod-menu {
+  width: 176px; /* 64 * 4 */
+  height: 216px;
+  /* background: linear-gradient(to left,#d3d3d3 , rgb(150, 141, 141) , #d3d3d3 100%) ; */
+  border: 1.5px solid #dad8d8;
+  padding: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: scroll;
+  position: absolute;
+  left: -200px; /* Initial position off-screen */
+  transform: translateX();
+  transition: left 0.5s ease;
+
+}
+.ipod-menu.show {
+  left: 0px; /* Slide-in position */
+}
+
+.ipod-menu::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.ipod-menu {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.menu-header {
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #a9a9a9;
+}
+
+.menu-header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0;
+}
+
+.menu-item {
+  padding: 8px 16px;
+  font-size: 1rem;
+  color: #4b4b4b;
+  cursor: pointer;
+}
+
+.menu-item.selected {
+  /* background: #1e90ff; */
+  background: linear-gradient(rgb(155, 223, 255) 5%,#509fee, #1e90ff);
+  border-bottom: rgb(0, 0, 0, 0.6) solid 1px;
+  color: white;
+}

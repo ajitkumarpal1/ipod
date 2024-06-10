@@ -1,0 +1,25 @@
+.center-btn-press:active {
+    transform: scale(.99) rotate(45deg);
+    border-width: 2px; 
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.btn-press:active {
+    transform: scale(.9); 
+}
+
+.btn-top-contener  {
+    border-top: rgba(103, 103, 103, 0.3) 1px solid ;
+}
+.btn-bottom-contener  {
+    border-bottom: rgba(103, 103, 103, 0.3) 1px solid ;
+}
+.btn-left-contener  {
+    border-left: rgba(103, 103, 103, 0.3) 1px solid ;
+}
+.btn-right-contener  {
+    border-right: rgba(103, 103, 103, 0.3) 1px solid ;
+}

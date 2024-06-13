@@ -15,10 +15,11 @@ export class Screen extends Component {
         super(props);
         this.state = {
             img: img1,
+            props:props.menuVisible
         }
     }
     componentDidUpdate(prevProps) {
-        if(prevProps.allSoungItamTop){
+        if(this.props.menuVisible){
             const menuElement = document.getElementById("scrinFrom");
             const listItem = menuElement.querySelector(`#topBar`);
             if (listItem) {

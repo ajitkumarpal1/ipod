@@ -19,7 +19,6 @@ export class AllMusic extends Component {
     }
     render() {
         const { musicData, allSoungItam } = this.props
-        console.log(allSoungItam)
         if (Object.keys(musicData).length === 0) {
             return (<>
                 <div id="allSongList" className="bg-gray-100 p-6 min-h-full min-w-full">

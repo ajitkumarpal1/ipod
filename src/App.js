@@ -14,8 +14,7 @@ export class App extends Component {
       currentCoverItam: 0,
       allSoungItam:0,
       activeCpmp: "",
-      musicData:{},
-      allSoungItamTop:false
+      musicData:{}
     };
   }
   playPause = ()=>{
@@ -30,61 +29,52 @@ export class App extends Component {
             menuVisible: false,
             currentMenuItam: 0,
             activeCpmp: "musicHome"
-          }, () => { console.log(this.state) });
+          });
           break;
         case 1:
           this.setState({
             currentScreen: "cover", menuVisible: false,
             currentMenuItam: 0,
             activeCpmp: "cover"
-          }, () => { console.log(this.state) });
+          });
           break;
         case 2:
           this.setState({
             currentScreen: "games", menuVisible: false,
             currentMenuItam: 0,
             activeCpmp: "game"
-          }, () => { console.log(this.state) });
+          });
           break;
         case 3:
           this.setState({
             currentScreen: "settings", menuVisible: false,
             currentMenuItam: 0,
             activeCpmp: "settings"
-          }, () => { console.log(this.state) });
+          });
           break;
         default:
           this.setState({
             currentScreen: "home", menuVisible: false,
             currentMenuItam: 0,
-            activeCpmp: "home" }, () => { console.log(this.state) });
+            activeCpmp: "home" });
           break;
       }
 
     }else if(this.state.currentScreen === "cover"){
-      console.log(this.state.currentCoverItam)
       this.setState((prevState)=>({ 
         currentCover: prevState.currentCoverItam,
         currentCoverItam:0,
-        currentScreen: "home",}),()=>{
-          console.log(this.state)
-        })
+        currentScreen: "home",}))
     }else if(this.state.currentScreen === "musicHome"){
-      console.log(this.state.currentMusicHomeItam)
       this.setState((prevState)=>({ 
         currentCover: prevState.currentMusicHomeItam,
         currentMusicHomeItam:0,
         currentScreen: "allSoung",
-        allSoungItam:0}),()=>{
-          console.log("ajit>>>>",this.state)
-        })
+        allSoungItam:0}))
     }else if(this.state.currentScreen === "allSoung"){
-      console.log(this.state.currentMusicHomeItam)
       this.setState((prevState)=>({ 
         currentScreen: "home"
-      }),()=>{
-          console.log("ajit>>>>",this.state)
-        })
+      }))
     } else{
       this.setState((prevState)=>{
         return {play:!prevState.play}
@@ -97,17 +87,22 @@ export class App extends Component {
   toggleMenu = () => {
     
     this.setState((prevState) => {
-      /* document.getElementById("allSongList").querySelector(`#list1`).scrollIntoView({ behavior: "smooth" }) */
-      return ({
-        activeCpmp: !prevState.menuVisible ? "menu" : "",
-        menuVisible: !prevState.menuVisible,
-        allSoungItamTop: true
-      })
+      if (!prevState.menuVisible) {
+        return ({
+          activeCpmp: !prevState.menuVisible ? "menu" : "",
+          menuVisible: !prevState.menuVisible
+        })
+      }else{
+        return ({
+          activeCpmp: !prevState.menuVisible ? "menu" : "",
+          menuVisible: !prevState.menuVisible
+        })
+      }
+      
     });
   };
   menuUpdate = (direction, limit = 2) => {
     if (this.state.activeCpmp === "menu") {
-      
       if (direction === "down") {
         this.setState((prevState) => (prevState.currentMenuItam < 3 ? { currentMenuItam: prevState.currentMenuItam + 1 } : { currentMenuItam: 0 }))
       } else {
@@ -187,7 +182,6 @@ export class App extends Component {
           musicData = {this.state.musicData}
           allSoungItam = {this.state.allSoungItam}
           play = {this.state.play}
-          allSoungItamTop = {this.state.allSoungItamTop}
           />
       </div>
     </>
@@ -197,7 +191,6 @@ export class App extends Component {
       const response = await fetch('https://proxydeezer.onrender.com/chart');
       const data = await response.json();
       this.setState({musicData:data})
-      console.log(data)
       
       return data.tracks.data;
     } catch (error) {

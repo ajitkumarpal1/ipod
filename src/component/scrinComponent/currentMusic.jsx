@@ -27,10 +27,18 @@ export class CurrentMusic extends Component {
         const { musicData, allSoungItam } = this.props;
 
         if (!musicData || !musicData.tracks || !musicData.tracks.data || musicData.tracks.data.length === 0) {
-            return (<></>);
+            return (<>
+            <>
+                    <div className="">
+                        
+                        <div className="w-72 h-32 rounded-md mt-2 mx-auto overflow-hidden bg-gray-300 animate-pulse" />
+                        <div className="w-72 h-12 mt-4 mx-auto rounded-full bg-gray-300 animate-pulse " />
+                    </div>
+                </>
+            </>);
         }
-
         const track = musicData.tracks.data[allSoungItam];
+        
 
         return (
             <>

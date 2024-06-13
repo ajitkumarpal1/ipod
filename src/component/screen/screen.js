@@ -18,6 +18,15 @@ export class Screen extends Component {
         }
     }
     componentDidUpdate(prevProps) {
+        if(prevProps.allSoungItamTop){
+            const menuElement = document.getElementById("scrinFrom");
+            const listItem = menuElement.querySelector(`#topBar`);
+            if (listItem) {
+                listItem.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+
+
         if (prevProps.currentCover !== this.props.currentCover) {
             this.updateBackgroundImage();
         }
@@ -37,10 +46,13 @@ export class Screen extends Component {
         return (
 
             <>
-                <div
+                
+                <div id="scrinFrom"
                     className="h-64 w-full rounded border-8 border-gray-700 relative overflow-hidden"
                     style={{ backgroundImage: `url(${this.state.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 >
+                    <div className="absolute w-full h-full bg-transparent"></div>
+                    <div id="topBar"></div>
                     <TopBar />
                     <Menu
                         menuVisible={this.props.menuVisible}
@@ -59,8 +71,7 @@ export class Screen extends Component {
                         currentMusicHomeItam={this.props.currentMusicHomeItam} />}
                     {currentScreen === "allSoung" && <AllMusic
                         allSoungItam={this.props.allSoungItam} 
-                        musicData={this.props.musicData}
-                        allSoungItamTop = {this.props.allSoungItamTop} />}
+                        musicData={this.props.musicData} />}
 
                     {currentScreen === "cover" && <Cover
                         currentCoverItam={this.props.currentCoverItam} />}

@@ -77,7 +77,7 @@ export class App extends Component {
       }))
     } else{
       this.setState((prevState)=>{
-        return {play:!prevState.play}
+        return {play:!this.state.play}
       })
     }
   }
